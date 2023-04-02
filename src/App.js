@@ -1,7 +1,7 @@
 import React ,{ useState, useEffect } from "react";
 import "./App.css";
 
-import Posts from "./components/Posts/Posts";
+import Post from "./components/Post/Post";
 import Search from "./components/Search/Search";
 import Pagination from "./components/Pagination/Pagination";
 import Filter from "./components/Filter/Filter";
@@ -12,11 +12,15 @@ const App = () => {
   
   let api = `https://vinay10082.github.io/gun_detail_api/guns_data.json`;
 
+  let [fetchedData, updateFetchedData] = useState([]);
+  let {data} = fetchedData;
+
   useEffect(() => {
     (async function () {
       (async function () {
-        let data = await fetch(api).then((res) => res.json());
-        console.log(data);
+        let guns = await fetch(api).then((res) => res.json());
+        // console.log(data);
+        updateFetchedData(guns);
       })();
     })();
   }, [api]);
@@ -29,7 +33,8 @@ const App = () => {
     Filter component will be placed here
     <div className="col-lg-8 col-12">
       <div className="row">
-        Posts component will be placed here
+        {/* we map cards on page */}
+        <Post data = {data} />
       </div>
     </div>
   </div>

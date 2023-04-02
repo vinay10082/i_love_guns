@@ -10,12 +10,14 @@ import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   
-  let api = `https://api.spacexdata.com/v5/launches/latest`;
+  let api = `https://vinay10082.github.io/gun_detail_api/guns_data.json`;
 
   useEffect(() => {
     (async function () {
-      let data = await fetch(api).then((res) => res.json());
-      console.log(data);
+      (async function () {
+        let data = await fetch(api).then((res) => res.json());
+        console.log(data);
+      })();
     })();
   }, [api]);
 

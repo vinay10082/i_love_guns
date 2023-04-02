@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React ,{ useState, useEffect } from "react";
+import "./App.css";
 
-function App() {
+import Posts from "./components/Posts/Posts";
+import Search from "./components/Search/Search";
+import Pagination from "./components/Pagination/Pagination";
+import Filter from "./components/Filter/Filter";
+import Navbar from "./components/Navbar/Navbar";
+
+
+const App = () => {
+  
+  let api = `https://api.spacexdata.com/v5/launches/latest`;
+
+  useEffect(() => {
+    (async function () {
+      let data = await fetch(api).then((res) => res.json());
+      console.log(data);
+    })();
+  }, [api]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+<div className="App">
+  <h1 className="text-center mb-3">Guns Display</h1>
+  <div className="container">
+  <div className="row">
+    Filter component will be placed here
+    <div className="col-lg-8 col-12">
+      <div className="row">
+        Posts component will be placed here
+      </div>
     </div>
+  </div>
+  </div>
+</div>
   );
-}
+};
 
 export default App;
